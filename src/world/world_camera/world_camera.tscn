@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://3h7btc71cqo6"]
+
+[ext_resource type="Script" uid="uid://bg3g77citc8a6" path="res://src/world/world_camera/world_camera.gd" id="1_3il4y"]
+[ext_resource type="Texture2D" uid="uid://be1u4gnk6m7pi" path="res://assets/icon.svg" id="2_aqlc2"]
+
+[node name="WorldCamera" type="Camera3D" unique_id=1797630745]
+current = true
+script = ExtResource("1_3il4y")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=514300758]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -100)
+
+[node name="Cursor" type="Sprite3D" parent="." unique_id=296086455]
+unique_name_in_owner = true
+visible = false
+sorting_offset = 1.0
+modulate = Color(1, 1, 1, 0.38039216)
+billboard = 1
+texture = ExtResource("2_aqlc2")

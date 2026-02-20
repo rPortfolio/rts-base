@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dlhhs2lsdsnxx"]
+
+[ext_resource type="Texture2D" uid="uid://be1u4gnk6m7pi" path="res://assets/icon.svg" id="1_a3wt2"]
+[ext_resource type="Script" uid="uid://0b0mj8n8vjdc" path="res://src/world/unit/unit.gd" id="1_rpcri"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rpcri"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_37b8c"]
+radius = 4.5794463
+
+[node name="Unit" type="Node3D" unique_id=649696788]
+script = ExtResource("1_rpcri")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=980666250]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2818503, 0)
+billboard = 1
+text = "Waiting"
+font_size = 60
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1248852687]
+unique_name_in_owner = true
+sorting_offset = 1.0
+billboard = 1
+texture = ExtResource("1_a3wt2")
+
+[node name="Collision" type="Area3D" parent="." unique_id=30025500]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=1065543529]
+shape = SubResource("SphereShape3D_rpcri")
+
+[node name="EffectRadius" type="Area3D" parent="." unique_id=447928839]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EffectRadius" unique_id=2012518413]
+shape = SubResource("SphereShape3D_37b8c")
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=1590400406]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="EffectRadius" to="." method="_on_effect_radius_area_entered"]
+[connection signal="area_exited" from="EffectRadius" to="." method="_on_effect_radius_area_exited"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_timer_timeout"]
