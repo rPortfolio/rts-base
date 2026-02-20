@@ -37,35 +37,6 @@ grow_vertical = 2
 layout_mode = 0
 theme_override_font_sizes/font_size = 30
 
-[node name="AddUnit" type="Button" parent="GUI" unique_id=18436516]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -314.0
-offset_top = -108.0
-grow_horizontal = 0
-grow_vertical = 0
-focus_mode = 0
-theme_override_font_sizes/font_size = 50
-text = "Add Unit"
-
-[node name="CallUnits" type="Button" parent="GUI" unique_id=2126683420]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -108.0
-offset_right = 314.0
-grow_vertical = 0
-focus_mode = 0
-theme_override_font_sizes/font_size = 50
-text = "Call Units"
-
 [node name="World" type="Node3D" parent="." unique_id=996288108]
 
 [node name="WorldCamera" parent="World" unique_id=1797630745 instance=ExtResource("2_gh0ne")]
@@ -88,6 +59,3 @@ size = Vector3(11, 1, 12)
 
 [node name="Units" type="Node3D" parent="World" unique_id=1623303346]
 unique_name_in_owner = true
-
-[connection signal="pressed" from="GUI/AddUnit" to="." method="_on_add_unit_pressed"]
-[connection signal="pressed" from="GUI/CallUnits" to="." method="_on_call_units_pressed"]

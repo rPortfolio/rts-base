@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dh4nugse6aqkc"]
+
+[ext_resource type="Script" uid="uid://dpaickywc3p28" path="res://src/gui/main_menu/saved_game_panel.gd" id="1_5uvx8"]
+
+[node name="SavedGamePanel" type="PanelContainer" unique_id=1462297838]
+offset_right = 201.0
+offset_bottom = 215.0
+script = ExtResource("1_5uvx8")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=119582253]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=150633017]
+layout_mode = 2
+
+[node name="SaveNumber" type="Label" parent="MarginContainer/VBoxContainer" unique_id=716961788]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SAVE 1"
+horizontal_alignment = 1
+
+[node name="PlayerName" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1580001683]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Player Name"
+horizontal_alignment = 1
+
+[node name="TimePlayed" type="Label" parent="MarginContainer/VBoxContainer" unique_id=829132642]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0h-0m-0s"
+horizontal_alignment = 1
+
+[node name="LevelsCompleted" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1882847907]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Levels Completed: 0"

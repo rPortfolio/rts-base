@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://datw6v11sif3q"]
+
+[ext_resource type="Script" uid="uid://ds16k2xoctiuo" path="res://src/gui/main_menu/main_menu.gd" id="1_yulm1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_whuv3"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dafm8"]
+width = 1152
+height = 648
+noise = SubResource("FastNoiseLite_whuv3")
+bump_strength = 6.3
+
+[node name="MainMenu" type="Control" unique_id=1411443913]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yulm1")
+
+[node name="ColorRect" type="TextureRect" parent="." unique_id=26966923]
+modulate = Color(0.16862746, 0.1254902, 0.16862746, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_dafm8")
+stretch_mode = 1
+
+[node name="SaveDisplayContainer" type="HBoxContainer" parent="." unique_id=752019179]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.074074075
+anchor_right = 1.0
+anchor_bottom = 0.43364197
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=710693755]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -132.5
+offset_top = -207.0
+offset_right = 132.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2139637384]
+layout_mode = 2
+
+[node name="PlayerName" type="TextEdit" parent="PanelContainer/VBoxContainer" unique_id=124830258]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Player Name"
+placeholder_text = "Name"
+
+[node name="TimePlayed" type="TextEdit" parent="PanelContainer/VBoxContainer" unique_id=193009187]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "0 Hours"
+placeholder_text = "Time Played"
+
+[node name="LevelsCompleted" type="TextEdit" parent="PanelContainer/VBoxContainer" unique_id=405884412]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Levels Completed"
+
+[node name="FileNo" type="LineEdit" parent="PanelContainer/VBoxContainer" unique_id=472989182]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "FileNo"
+virtual_keyboard_type = 2
+
+[node name="Save" type="Button" parent="PanelContainer/VBoxContainer" unique_id=712557365]
+layout_mode = 2
+text = "Save"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Save" to="." method="_on_save_pressed"]
