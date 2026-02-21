@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://dpaickywc3p28" path="res://src/gui/main_menu/saved_game_panel.gd" id="1_5uvx8"]
 
 [node name="SavedGamePanel" type="PanelContainer" unique_id=1462297838]
-offset_right = 201.0
-offset_bottom = 215.0
+custom_minimum_size = Vector2(330, 235)
+offset_right = 370.0
+offset_bottom = 187.0
 script = ExtResource("1_5uvx8")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=119582253]
@@ -43,3 +44,20 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Levels Completed: 0"
+
+[node name="Control" type="Control" parent="." unique_id=1251032818]
+layout_mode = 2
+
+[node name="DeleteSave" type="Button" parent="Control" unique_id=2014557019]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "X"

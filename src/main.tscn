@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dn4rspvnxavxf" path="res://src/gui/fps_counter.tscn" id="1_eewff"]
 [ext_resource type="PackedScene" uid="uid://3h7btc71cqo6" path="res://src/world/world_camera/world_camera.tscn" id="2_gh0ne"]
 [ext_resource type="Texture2D" uid="uid://be1u4gnk6m7pi" path="res://assets/icon.svg" id="4_3cfgd"]
+[ext_resource type="AudioStream" uid="uid://tn03pn20sgi8" path="res://assets/Conflict1.ogg" id="5_fyndt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fyndt"]
 panorama = ExtResource("4_3cfgd")
@@ -59,3 +60,7 @@ size = Vector3(11, 1, 12)
 
 [node name="Units" type="Node3D" parent="World" unique_id=1623303346]
 unique_name_in_owner = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1294372059]
+stream = ExtResource("5_fyndt")
+autoplay = true

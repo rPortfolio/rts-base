@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://datw6v11sif3q"]
 
+[ext_resource type="PackedScene" uid="uid://dh4nugse6aqkc" path="res://src/gui/main_menu/saved_game_panel.tscn" id="1_dafm8"]
 [ext_resource type="Script" uid="uid://ds16k2xoctiuo" path="res://src/gui/main_menu/main_menu.gd" id="1_yulm1"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_whuv3"]
@@ -10,6 +11,9 @@ width = 1152
 height = 648
 noise = SubResource("FastNoiseLite_whuv3")
 bump_strength = 6.3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yulm1"]
+bg_color = Color(0.12536758, 0.012473993, 0.15854016, 0.28235295)
 
 [node name="MainMenu" type="Control" unique_id=1411443913]
 layout_mode = 3
@@ -43,7 +47,11 @@ grow_vertical = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=710693755]
+[node name="SavedGamePanel" parent="SaveDisplayContainer" unique_id=1462297838 instance=ExtResource("1_dafm8")]
+layout_mode = 2
+
+[node name="SavePanelOld" type="PanelContainer" parent="." unique_id=710693755]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -56,18 +64,18 @@ offset_right = 132.5
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2139637384]
+[node name="VBoxContainer" type="VBoxContainer" parent="SavePanelOld" unique_id=2139637384]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=433268510]
+[node name="HBoxContainer" type="HBoxContainer" parent="SavePanelOld/VBoxContainer" unique_id=433268510]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1291993692]
+[node name="Label" type="Label" parent="SavePanelOld/VBoxContainer/HBoxContainer" unique_id=1291993692]
 layout_mode = 2
 text = "Name:"
 
-[node name="PlayerName" type="TextEdit" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=124830258]
+[node name="PlayerName" type="TextEdit" parent="SavePanelOld/VBoxContainer/HBoxContainer" unique_id=124830258]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -75,15 +83,15 @@ size_flags_vertical = 3
 text = "Player Name"
 placeholder_text = "Name"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1415931789]
+[node name="HBoxContainer2" type="HBoxContainer" parent="SavePanelOld/VBoxContainer" unique_id=1415931789]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=2100746804]
+[node name="Label" type="Label" parent="SavePanelOld/VBoxContainer/HBoxContainer2" unique_id=2100746804]
 layout_mode = 2
 text = "Time Played:"
 
-[node name="TimePlayed" type="TextEdit" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=193009187]
+[node name="TimePlayed" type="TextEdit" parent="SavePanelOld/VBoxContainer/HBoxContainer2" unique_id=193009187]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -91,15 +99,15 @@ size_flags_vertical = 3
 text = "0 Hours"
 placeholder_text = "Time Played"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1231432111]
+[node name="HBoxContainer3" type="HBoxContainer" parent="SavePanelOld/VBoxContainer" unique_id=1231432111]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=452681021]
+[node name="Label" type="Label" parent="SavePanelOld/VBoxContainer/HBoxContainer3" unique_id=452681021]
 layout_mode = 2
 text = "Levels Completed (int):"
 
-[node name="LevelsCompleted" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=173499505]
+[node name="LevelsCompleted" type="LineEdit" parent="SavePanelOld/VBoxContainer/HBoxContainer3" unique_id=173499505]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -107,15 +115,15 @@ size_flags_vertical = 3
 text = "0"
 virtual_keyboard_type = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=228040966]
+[node name="HBoxContainer4" type="HBoxContainer" parent="SavePanelOld/VBoxContainer" unique_id=228040966]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer4" unique_id=1323105446]
+[node name="Label" type="Label" parent="SavePanelOld/VBoxContainer/HBoxContainer4" unique_id=1323105446]
 layout_mode = 2
 text = "Save File (int):"
 
-[node name="FileNo" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer4" unique_id=472989182]
+[node name="FileNo" type="LineEdit" parent="SavePanelOld/VBoxContainer/HBoxContainer4" unique_id=472989182]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -123,8 +131,49 @@ size_flags_vertical = 3
 text = "0"
 virtual_keyboard_type = 2
 
-[node name="Save" type="Button" parent="PanelContainer/VBoxContainer" unique_id=712557365]
+[node name="Save" type="Button" parent="SavePanelOld/VBoxContainer" unique_id=712557365]
 layout_mode = 2
 text = "Save"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[node name="NamePanel" type="PanelContainer" parent="." unique_id=1290852370]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yulm1")
+
+[node name="CenterContainer" type="CenterContainer" parent="NamePanel" unique_id=1650744754]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NamePanel/CenterContainer" unique_id=487306781]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NamePanel/CenterContainer/VBoxContainer" unique_id=1587457476]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Enter Name"
+horizontal_alignment = 1
+
+[node name="NameEntry" type="LineEdit" parent="NamePanel/CenterContainer/VBoxContainer" unique_id=2013311195]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Name"
+
+[node name="Accept" type="Button" parent="NamePanel/CenterContainer/VBoxContainer" unique_id=523171896]
+layout_mode = 2
+text = "Accept"
+
+[node name="Cancel" type="Button" parent="NamePanel/CenterContainer/VBoxContainer" unique_id=2102844777]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="SavePanelOld/VBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="text_submitted" from="NamePanel/CenterContainer/VBoxContainer/NameEntry" to="." method="_on_name_entry_text_submitted"]
+[connection signal="pressed" from="NamePanel/CenterContainer/VBoxContainer/Accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="NamePanel/CenterContainer/VBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
