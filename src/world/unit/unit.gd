@@ -44,10 +44,10 @@ func _on_timer_timeout() -> void:
 
 
 func _on_effect_radius_area_entered(area: Area3D) -> void:
-	if area != %Collision:
+	if not is_ancestor_of(area):
 		nearby_units += 1
 
 
 func _on_effect_radius_area_exited(area: Area3D) -> void:
-	if area != %Collision:
+	if not is_ancestor_of(area):
 		nearby_units -= 1

@@ -41,3 +41,7 @@ func get_cursor_position() -> Vector3:
 	if %RayCast3D.is_colliding():
 		return %RayCast3D.get_collision_point()
 	return %Cursor.global_position ## Should be last valid position
+
+
+func is_cursor_on_screen() -> bool:
+	return %RayCast3D.is_colliding()

@@ -1,22 +1,48 @@
 extends Node
 
 
-var unit_scene: PackedScene = preload("res://src/world/unit/unit.tscn")
+enum States {
+	MAIN_MENU,
+	PLAYING,
+}
+
+var state: States = States.MAIN_MENU:
+	set = set_state
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("left_click"):
-		add_unit()
-	elif event.is_action_pressed("right_click"):
-		call_units()
+var saved_game: SavedGame
+var open_slot: int
 
 
-func add_unit() -> void:
-	var new_unit: Unit = unit_scene.instantiate()
-	new_unit.position = %WorldCamera.get_cursor_position()
-	%Units.add_child(new_unit)
+func _unhandled_input(event: InputEvent) -> void:
+	match state:
+		States.MAIN_MENU:
+			if event.is_action_pressed("ui_cancel"):
+				get_tree().quit()
+		States.PLAYING:
+			if event.is_action_pressed("ui_cancel"):
+				state = States.MAIN_MENU
 
 
-func call_units() -> void:
-	for child: Unit in %Units.get_children():
-		child.target_position = %WorldCamera.get_cursor_position()
+func set_state(new_state) -> void:
+	match state:
+		States.PLAYING:
+			saved_game.units = %World.get_units()
+			saved_game.camera_pos = %World.camera.position
+			%MainMenu.save_game(open_slot, saved_game)
+			%World.kill_units()
+	match new_state:
+		States.MAIN_MENU:
+			%MainMenu.show()
+		States.PLAYING:
+			%World.load_units(saved_game.units)
+			%World.camera.position = saved_game.camera_pos
+			%MainMenu.hide()
+	state = new_state
+
+
+func _on_main_menu_game_selected(slot: int, game: SavedGame) -> void:
+	saved_game = game
+	open_slot = slot
+	%PlayerName.text = saved_game.player
+	state = States.PLAYING

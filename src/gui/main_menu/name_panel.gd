@@ -5,10 +5,10 @@ signal name_entered(player_name: String)
 signal cancelled
 
 
-
-func _gui_input(event: InputEvent) -> void:
-	if event.is_action("ui_cancel"):
+func _input(event: InputEvent) -> void:
+	if visible and event.is_action_pressed("ui_cancel"):
 		cancelled.emit()
+		get_viewport().set_input_as_handled()
 
 
 func open() -> void:
@@ -27,3 +27,8 @@ func _on_accept_pressed() -> void:
 
 func _on_cancel_button_down() -> void:
 	cancelled.emit()
+
+
+func _on_name_entry_editing_toggled(toggled_on: bool) -> void:
+	if not toggled_on:
+		cancelled.emit()

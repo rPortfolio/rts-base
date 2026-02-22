@@ -6,4 +6,5 @@ func setup(number: int, player: StringName, level: int, time: StringName, main_m
 	%PlayerName.text = player
 	%LevelsCompleted.text = "Level {}".format([level], "{}")
 	%TimePlayed.text = time
+	%SelectSave.pressed.connect(main_menu._on_select_save_button_pressed.bind(number))
 	%DeleteSave.pressed.connect(main_menu._on_delete_save_button_pressed.bind(number))

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://13yxv773160s"]
+
+[ext_resource type="Script" uid="uid://da26nokqihn84" path="res://src/world/world.gd" id="1_jte2u"]
+[ext_resource type="PackedScene" uid="uid://3h7btc71cqo6" path="res://src/world/world_camera/world_camera.tscn" id="2_bsf3i"]
+[ext_resource type="Texture2D" uid="uid://be1u4gnk6m7pi" path="res://assets/icon.svg" id="3_43c6p"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fyndt"]
+panorama = ExtResource("3_43c6p")
+
+[sub_resource type="Sky" id="Sky_kmhfv"]
+sky_material = SubResource("PanoramaSkyMaterial_fyndt")
+
+[sub_resource type="Environment" id="Environment_eewff"]
+background_mode = 1
+background_color = Color(0.61239386, 0.48531562, 0.7333972, 1)
+background_energy_multiplier = 0.66
+sky = SubResource("Sky_kmhfv")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_3cfgd"]
+vertices = PackedVector3Array(-5, 0.5, -5.5, -5, 0.5, 5.5, 5, 0.5, 5.5, 5, 0.5, -5.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_radius = 5.0
+
+[node name="World" type="Node3D" unique_id=744991072]
+script = ExtResource("1_jte2u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1882100711]
+environment = SubResource("Environment_eewff")
+
+[node name="WorldCamera" parent="." unique_id=1797630745 instance=ExtResource("2_bsf3i")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 5, 0)
+
+[node name="Level" type="Node3D" parent="." unique_id=1387027697]
+unique_name_in_owner = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Level" unique_id=1023456511]
+navigation_mesh = SubResource("NavigationMesh_3cfgd")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level/NavigationRegion3D" unique_id=693817539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(11, 1, 12)
+
+[node name="Units" type="Node3D" parent="." unique_id=40394474]
+unique_name_in_owner = true

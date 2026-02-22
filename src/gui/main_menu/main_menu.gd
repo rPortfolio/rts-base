@@ -1,6 +1,9 @@
 extends Control
 
 
+signal game_selected(slot: int, game: SavedGame)
+
+
 const SAVE_FOLDER = "user://saves/"
 const SAVE_FILE_PREFIX = "save" ## All files will start with save
 const SAVE_SLOT_NUMBER = 3
@@ -75,6 +78,11 @@ func init_save(player_name: String) -> void:
 func _on_new_game_button_pressed(save_number: int) -> void:
 	open_slot = save_number
 	%NamePanel.open()
+
+
+func _on_select_save_button_pressed(save_number: int) -> void:
+	var save_index := save_number - 1
+	game_selected.emit(save_number, get_saved_games()[save_index])
 
 
 func _on_delete_save_button_pressed(save_number: int) -> void:
