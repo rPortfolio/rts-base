@@ -3,7 +3,7 @@ extends Control
 
 const SAVE_FOLDER = "user://saves/"
 const SAVE_FILE_PREFIX = "save" ## All files will start with save
-const SAVE_SLOT_NUMBER =3
+const SAVE_SLOT_NUMBER = 3
 const SAVED_GAME_PANEL = preload("res://src/gui/main_menu/saved_game_panel.tscn")
 const NEW_GAME_PANEL = preload("res://src/gui/main_menu/new_game_panel.tscn")
 
@@ -74,24 +74,17 @@ func init_save(player_name: String) -> void:
 
 func _on_new_game_button_pressed(save_number: int) -> void:
 	open_slot = save_number
-	%NamePanel.show()
-	%NameEntry.grab_focus()
-
-
-## Both pressing enter and pressing the accept button initialize a new save
-func _on_name_entry_text_submitted(new_text: String) -> void:
-	%NamePanel.hide()
-	init_save(new_text)
-
-
-func _on_accept_pressed() -> void:
-	%NamePanel.hide()
-	init_save(%NameEntry.text)
-
-
-func _on_cancel_pressed() -> void:
-	%NamePanel.hide()
+	%NamePanel.open()
 
 
 func _on_delete_save_button_pressed(save_number: int) -> void:
 	delete_game(save_number)
+
+
+func _on_name_panel_name_entered(player_name: String) -> void:
+	init_save(player_name)
+	%NamePanel.hide()
+
+
+func _on_name_panel_cancelled() -> void:
+	%NamePanel.hide()

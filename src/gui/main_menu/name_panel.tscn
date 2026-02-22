@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ca5soab1ct41i"]
+
+[ext_resource type="Script" uid="uid://c8hoxmmyy18vo" path="res://src/gui/main_menu/name_panel.gd" id="1_6scrb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yulm1"]
+bg_color = Color(0.12536758, 0.012473993, 0.15854016, 0.28235295)
+
+[node name="NamePanel" type="PanelContainer" unique_id=782324202]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yulm1")
+script = ExtResource("1_6scrb")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=557667780]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=860421431]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=525324250]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Enter Name"
+horizontal_alignment = 1
+
+[node name="NameEntry" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=191402633]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Name"
+
+[node name="Accept" type="Button" parent="CenterContainer/VBoxContainer" unique_id=511200986]
+layout_mode = 2
+text = "Accept"
+
+[node name="Cancel" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1401553664]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="text_submitted" from="CenterContainer/VBoxContainer/NameEntry" to="." method="_on_name_entry_text_submitted"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Accept" to="." method="_on_accept_pressed"]
+[connection signal="button_down" from="CenterContainer/VBoxContainer/Cancel" to="." method="_on_cancel_button_down"]
