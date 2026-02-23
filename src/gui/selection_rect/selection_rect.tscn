@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bea8ax00kx4sb"]
+
+[ext_resource type="Script" uid="uid://b0aryq00et5i2" path="res://src/gui/selection_rect/selection_rect.gd" id="1_l2cwx"]
+
+[node name="SelectionRect" type="ColorRect" unique_id=1256554187]
+offset_right = 1098.0
+offset_bottom = 556.0
+color = Color(1, 1, 1, 0.28235295)
+script = ExtResource("1_l2cwx")

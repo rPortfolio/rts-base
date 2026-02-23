@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dn4rspvnxavxf" path="res://src/gui/fps_counter.tscn" id="1_eewff"]
 [ext_resource type="PackedScene" uid="uid://datw6v11sif3q" path="res://src/gui/main_menu/main_menu.tscn" id="3_fyndt"]
 [ext_resource type="PackedScene" uid="uid://13yxv773160s" path="res://src/world/world.tscn" id="4_fyndt"]
+[ext_resource type="PackedScene" uid="uid://bea8ax00kx4sb" path="res://src/gui/selection_rect/selection_rect.tscn" id="4_kmhfv"]
 [ext_resource type="AudioStream" uid="uid://tn03pn20sgi8" path="res://assets/Conflict1.ogg" id="5_fyndt"]
 
 [node name="Main" type="Node" unique_id=1940223439]
@@ -36,6 +37,9 @@ layout_mode = 1
 [node name="FPSCounter" parent="GUI" unique_id=1921442735 instance=ExtResource("1_eewff")]
 layout_mode = 0
 theme_override_font_sizes/font_size = 30
+
+[node name="SelectionRect" parent="GUI" unique_id=1256554187 instance=ExtResource("4_kmhfv")]
+layout_mode = 0
 
 [node name="World" parent="." unique_id=744991072 instance=ExtResource("4_fyndt")]
 unique_name_in_owner = true
