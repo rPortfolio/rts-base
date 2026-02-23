@@ -8,22 +8,16 @@ extends Node3D
 
 const SPEED = 2
 
-var is_waiting: bool = true
 var nearby_units: int = 0
 var target_position: Vector3
 
+@onready var sprite: Sprite3D = %Sprite3D
+@onready var label: Label3D = %Label3D
+@onready var fsm: FiniteStateMachine = %FiniteStateMachine
+
 
 func _ready() -> void:
-	target_position = global_position
-
-
-func _physics_process(delta: float) -> void:
-	if is_waiting:
-		%Label3D.text = "Building...\n{}s Left".format([int(%WaitTimer.time_left) + 1], "{}")
-		%Sprite3D.modulate = Color(0.5, 0.5, 1, 1 - %WaitTimer.time_left / %WaitTimer.wait_time)
-	else:
-		%Label3D.text = "Nearby Units: {}".format([nearby_units], "{}")
-		move_unit(delta)
+	fsm.setup.call_deferred()
 
 
 func move_unit(delta) -> void:
@@ -36,11 +30,13 @@ func move_unit(delta) -> void:
 	global_position += velocity * delta
 
 
-func _on_timer_timeout() -> void:
-	is_waiting = false
-	%Collision.monitorable = true
-	%EffectRadius.monitoring = true
-	%Sprite3D.modulate = Color.WHITE
+func get_saved_unit() -> SavedUnit:
+	var saved_unit := SavedUnit.new()
+	saved_unit.position = position
+	saved_unit.target_position = target_position
+	saved_unit.state_name = fsm.state.name
+	saved_unit.state_data = fsm.state.get_state_data()
+	return saved_unit
 
 
 func _on_effect_radius_area_entered(area: Area3D) -> void:

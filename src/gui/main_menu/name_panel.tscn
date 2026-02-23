@@ -46,3 +46,4 @@ text = "Cancel"
 [connection signal="text_submitted" from="CenterContainer/VBoxContainer/NameEntry" to="." method="_on_name_entry_text_submitted"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Accept" to="." method="_on_accept_pressed"]
 [connection signal="button_down" from="CenterContainer/VBoxContainer/Cancel" to="." method="_on_cancel_button_down"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

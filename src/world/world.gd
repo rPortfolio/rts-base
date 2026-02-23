@@ -16,6 +16,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func add_unit() -> void:
 	var new_unit: Unit = UNIT_SCENE.instantiate()
 	new_unit.position = camera.get_cursor_position()
+	new_unit.target_position = camera.get_cursor_position()
 	%Units.add_child(new_unit)
 
 
@@ -33,15 +34,13 @@ func load_units(units: Array[SavedUnit]) -> void:
 	for saved_unit in units:
 		var new_unit: Unit = UNIT_SCENE.instantiate()
 		new_unit.position = saved_unit.position
-		new_unit.target_position = saved_unit.position
 		%Units.add_child(new_unit)
+		new_unit.fsm.starting_state = saved_unit.state_name
+		new_unit.target_position = saved_unit.target_position
 
 
 func get_units() -> Array[SavedUnit]:
 	var units: Array[SavedUnit] = []
 	for child: Unit in %Units.get_children():
-		var saved_unit := SavedUnit.new()
-		saved_unit.position = child.position
-		saved_unit.target_position = child.target_position
-		units.append(saved_unit)
+		units.append(child.get_saved_unit())
 	return units

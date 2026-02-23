@@ -25,7 +25,7 @@ func _on_accept_pressed() -> void:
 	name_entered.emit(%NameEntry.text)
 
 
-func _on_cancel_button_down() -> void:
+func _on_cancel_pressed() -> void:
 	cancelled.emit()
 
 
