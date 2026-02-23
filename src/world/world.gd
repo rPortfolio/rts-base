@@ -52,9 +52,7 @@ func get_units() -> Array[SavedUnit]:
 
 func is_unit_selected(selection_rect: Rect2, unit: Unit) -> bool:
 	var unit_pos := camera.unproject_position(unit.global_position)
-	var is_in_box_hor := unit_pos.x > selection_rect.position.x and unit_pos.x < selection_rect.position.x + selection_rect.size.x
-	var is_in_box_vert := unit_pos.y > selection_rect.position.y and unit_pos.y < selection_rect.position.y + selection_rect.size.y
-	return is_in_box_hor and is_in_box_vert
+	return selection_rect.has_point(unit_pos)
 
 
 func _on_selection_made(selection_rect: Rect2) -> void:
