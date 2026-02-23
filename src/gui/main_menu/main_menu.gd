@@ -28,6 +28,7 @@ func refresh_save_display() -> void:
 		var save := saved_games[i]
 		var save_number := i + 1
 		if save:
+			print(save.player)
 			var panel = SAVED_GAME_PANEL.instantiate()
 			panel.setup(save_number, save.player, save.level, save.time, self)
 			%SaveDisplayContainer.add_child(panel)
@@ -46,23 +47,27 @@ func get_saved_games() -> Array[SavedGame]:
 	var dir := DirAccess.open(SAVE_FOLDER)
 	if dir:
 		for i in range(SAVE_SLOT_NUMBER):
-			var save_number := i + 1
-			var file_path := "{}{}{}.tres".format([SAVE_FOLDER, SAVE_FILE_PREFIX, str(save_number)], "{}")
+			var slot := i + 1
+			var file_path := get_slot_file_path(slot)
 			if FileAccess.file_exists(file_path):
-				saved_games[i] = ResourceLoader.load(file_path)
+				saved_games[i] = ResourceLoader.load(file_path, "SavedGame", ResourceLoader.CACHE_MODE_IGNORE)
 	return saved_games
+
+
+func get_slot_file_path(slot: int) -> String:
+	return "{}{}{}.tres".format([SAVE_FOLDER, SAVE_FILE_PREFIX, str(slot)], "{}")
 
 
 func save_game(slot: int, save: SavedGame) -> void:
 	if !DirAccess.dir_exists_absolute(SAVE_FOLDER):
 		DirAccess.make_dir_absolute(SAVE_FOLDER)
-	var file_path := "{}{}{}.tres".format([SAVE_FOLDER, SAVE_FILE_PREFIX, str(slot)], "{}")
+	var file_path := get_slot_file_path(slot)
 	ResourceSaver.save(save, file_path)
 	refresh_save_display()
 
 
 func delete_game(slot: int) -> void:
-	var file_path := "{}{}{}.tres".format([SAVE_FOLDER, SAVE_FILE_PREFIX, str(slot)], "{}")
+	var file_path := get_slot_file_path(slot)
 	if FileAccess.file_exists(file_path):
 		DirAccess.remove_absolute(file_path)
 		refresh_save_display()
