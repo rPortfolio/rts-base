@@ -50,10 +50,14 @@ func get_units() -> Array[SavedUnit]:
 	return units
 
 
+func is_unit_selected(selection_rect: Rect2, unit: Unit) -> bool:
+	var unit_pos := camera.unproject_position(unit.global_position)
+	var is_in_box_hor := unit_pos.x > selection_rect.position.x and unit_pos.x < selection_rect.position.x + selection_rect.size.x
+	var is_in_box_vert := unit_pos.y > selection_rect.position.y and unit_pos.y < selection_rect.position.y + selection_rect.size.y
+	return is_in_box_hor and is_in_box_vert
+
+
 func _on_selection_made(selection_rect: Rect2) -> void:
 	for unit: Unit in %Units.get_children():
-		var unit_pos := camera.unproject_position(unit.global_position)
-		var is_in_box_hor := unit_pos.x > selection_rect.position.x and unit_pos.x < selection_rect.position.x + selection_rect.size.x
-		var is_in_box_vert := unit_pos.y > selection_rect.position.y and unit_pos.y < selection_rect.position.y + selection_rect.size.y
-		if is_in_box_hor and is_in_box_vert:
+		if is_unit_selected(selection_rect, unit):
 			unit.queue_free()
