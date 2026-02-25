@@ -28,7 +28,6 @@ func refresh_save_display() -> void:
 		var save := saved_games[i]
 		var save_number := i + 1
 		if save:
-			print(save.player)
 			var panel = SAVED_GAME_PANEL.instantiate()
 			panel.setup(save_number, save.player, save.level, save.time, self)
 			%SaveDisplayContainer.add_child(panel)

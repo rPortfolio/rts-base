@@ -2,7 +2,7 @@ extends Node3D
 
 
 const UNIT_SCENE: PackedScene = preload("res://src/world/unit/unit.tscn")
-@onready var camera: Camera3D = %WorldCamera
+@onready var world_camera: Node3D = %WorldCamera
 
 
 func _ready() -> void:
@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if camera.is_cursor_on_screen():
+	if world_camera.is_cursor_on_screen():
 		if event.is_action_pressed("left_click"):
 			add_unit()
 		elif event.is_action_pressed("right_click"):
@@ -19,14 +19,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func add_unit() -> void:
 	var new_unit: Unit = UNIT_SCENE.instantiate()
-	new_unit.position = camera.get_cursor_position()
-	new_unit.target_position = camera.get_cursor_position()
+	new_unit.position = world_camera.get_cursor_position()
+	new_unit.target_position = world_camera.get_cursor_position()
 	%Units.add_child(new_unit)
 
 
 func call_units() -> void:
 	for child: Unit in %Units.get_children():
-		child.target_position = camera.get_cursor_position()
+		child.target_position = world_camera.get_cursor_position()
 
 
 func kill_units() -> void:
@@ -51,7 +51,7 @@ func get_units() -> Array[SavedUnit]:
 
 
 func is_unit_selected(selection_rect: Rect2, unit: Unit) -> bool:
-	var unit_pos := camera.unproject_position(unit.global_position)
+	var unit_pos: Vector2 = world_camera.camera.unproject_position(unit.global_position)
 	return selection_rect.has_point(unit_pos)
 
 

@@ -3,9 +3,13 @@
 [ext_resource type="Script" uid="uid://bg3g77citc8a6" path="res://src/world/world_camera/world_camera.gd" id="1_3il4y"]
 [ext_resource type="Texture2D" uid="uid://be1u4gnk6m7pi" path="res://assets/icon.svg" id="2_aqlc2"]
 
-[node name="WorldCamera" type="Camera3D" unique_id=1797630745]
-current = true
+[node name="WorldCamera" type="Node3D" unique_id=431417180]
 script = ExtResource("1_3il4y")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1797630745]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=514300758]
 unique_name_in_owner = true

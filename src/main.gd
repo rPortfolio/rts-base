@@ -28,7 +28,7 @@ func set_state(new_state) -> void:
 	match state:
 		States.PLAYING:
 			saved_game.units = %World.get_units()
-			saved_game.camera_pos = %World.camera.position
+			saved_game.camera_pos = %World.world_camera.position
 			%MainMenu.save_game(open_slot, saved_game)
 			%World.kill_units()
 	match new_state:
@@ -36,7 +36,7 @@ func set_state(new_state) -> void:
 			%MainMenu.show()
 		States.PLAYING:
 			%World.load_units(saved_game.units)
-			%World.camera.position = saved_game.camera_pos
+			%World.world_camera.position = saved_game.camera_pos
 			%MainMenu.hide()
 	state = new_state
 
