@@ -35,6 +35,7 @@ func set_state(new_state) -> void:
 		States.MAIN_MENU:
 			%MainMenu.show()
 		States.PLAYING:
+			%World.selected_units = [] as Array[Unit]
 			%World.load_units(saved_game.units)
 			%World.world_camera.position = saved_game.camera_pos
 			%MainMenu.hide()

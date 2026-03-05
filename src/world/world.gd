@@ -2,6 +2,7 @@ extends Node3D
 
 
 const UNIT_SCENE: PackedScene = preload("res://src/world/unit/unit.tscn")
+var selected_units: Array[Unit] = []
 @onready var world_camera: Node3D = %WorldCamera
 
 
@@ -10,7 +11,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if world_camera.is_cursor_on_screen():
+	if world_camera.is_cursor_on_screen() and not Input.is_action_just_pressed("mid_click"):
 		if event.is_action_pressed("left_click"):
 			add_unit()
 		elif event.is_action_pressed("right_click"):
@@ -25,7 +26,7 @@ func add_unit() -> void:
 
 
 func call_units() -> void:
-	for child: Unit in %Units.get_children():
+	for child: Unit in selected_units:
 		child.target_position = world_camera.get_cursor_position()
 
 
@@ -56,6 +57,9 @@ func is_unit_selected(selection_rect: Rect2, unit: Unit) -> bool:
 
 
 func _on_selection_made(selection_rect: Rect2) -> void:
+	while not selected_units.is_empty():
+		selected_units.pop_front().unselect()
 	for unit: Unit in %Units.get_children():
 		if is_unit_selected(selection_rect, unit):
-			unit.queue_free()
+			selected_units.append(unit)
+			unit.select()
