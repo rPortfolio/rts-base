@@ -1,6 +1,9 @@
 extends State
 
 
-func update(delta: float) -> void:
-	owner.move_unit(delta)
-	owner.label.text = "Nearby Units: {}".format([owner.nearby_units], "{}")
+@export var move: State
+
+
+func update(_delta: float) -> void:
+	if unit.global_position.distance_squared_to(unit.target_position) > unit.DISTANCE_THRESHOLD:
+		finished.emit(move)

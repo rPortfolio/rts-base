@@ -2,14 +2,14 @@ class_name FiniteStateMachine
 extends Node
 
 
-@export var starting_state: String
 var state: State
 
 
-## A consequence of having a deferred setup instead of on_ready is that the state machine will not be active on the first frame
-func setup() -> void:
-	if starting_state:
-		state = get_node(starting_state)
+func setup(state_name: String = "") -> void:
+	for child: State in get_children():
+		child.setup()
+	if state_name:
+		state = get_node(state_name)
 	else:
 		state = get_child(0)
 	enter_state(state)

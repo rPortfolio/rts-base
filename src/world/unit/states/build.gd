@@ -1,42 +1,28 @@
 extends State
 
 
-@export var timer: Timer
+const BUILD_FRAMES_KEY = "build_frames" ## Key stored as constant to avoid typos
+const FPS = 60
+
+@export var build_time_seconds: float = 1
 @export var idle: State
 
-
-func _ready() -> void:
-	timer.timeout.connect(_on_timer_timeout)
+@onready var build_time_frames: int = int(build_time_seconds * FPS)
 
 
-func enter() -> void:
-	print("Building...")
-	%Collision.monitorable = false
-	%EffectRadius.monitoring = false
-	timer.start()
+func setup() -> void:
+	super.setup()
+	if BUILD_FRAMES_KEY not in unit.data:
+		unit.data[BUILD_FRAMES_KEY] = 0
 
 
 func exit() -> void:
-	print("Finished Building")
-	%Collision.monitorable = true
-	%EffectRadius.monitoring = true
-	owner.sprite.modulate = Color.WHITE
+	unit.sprite.modulate = Color.WHITE
 
 
 func update(_delta: float) -> void:
-	owner.label.text = "Building...\n{}s Left".format([int(timer.time_left) + 1], "{}")
-	owner.sprite.modulate = Color(0.5, 0.5, 1, 1 - timer.time_left / timer.wait_time)
-
-
-func get_state_data() -> Dictionary:
-	return {
-		"time_left" : timer.time_left,
-	}
-
-
-func load_state_data(state_data: Dictionary) -> void:
-	timer.wait_time = state_data["time_left"]
-
-
-func _on_timer_timeout() -> void:
-	finished.emit(idle)
+	print(unit.data[BUILD_FRAMES_KEY])
+	unit.data[BUILD_FRAMES_KEY] = unit.data[BUILD_FRAMES_KEY] + 1
+	unit.sprite.modulate = Color(0.5, 0.5, 1, float(unit.data[BUILD_FRAMES_KEY]) / build_time_frames)
+	if unit.data[BUILD_FRAMES_KEY] == build_time_frames:
+		finished.emit(idle)
