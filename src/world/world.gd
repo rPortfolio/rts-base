@@ -60,8 +60,8 @@ func get_target_positions(target_position: Vector3, n: int) -> Array[Vector3]:
 	const SEP := 1.5 # Separation in meters
 	var lines := ceili(sqrt(n))
 	var start_position := target_position
-	start_position.x -= 0.25 * lines * SEP
-	start_position.z -= 0.25 * lines * SEP
+	start_position.x -= 0.5 * (lines - 1) * SEP
+	start_position.z -= 0.5 * (lines - 1) * SEP
 	
 	for i in range(n):
 		var new_target_position := start_position

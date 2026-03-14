@@ -4,7 +4,7 @@ extends Node3D
 ## Unit Script
 ## Designed to be loosely coupled with the state system
 
-const DISTANCE_THRESHOLD = 0.3 ## In meters
+const DISTANCE_THRESHOLD = 0.25 ## In meters
 const GROUND_DETECT_OFFSET = 100 ## Meters above/below position
 
 @export var fsm: FiniteStateMachine
