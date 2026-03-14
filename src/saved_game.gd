@@ -7,3 +7,4 @@ extends Resource
 @export var time: StringName = "0h-0m-0s"
 @export var units: Array[SavedUnit]
 @export var camera_pos: Vector3 = Vector3(0, 5, 0)
+@export var camera_rotation_y: float = 0

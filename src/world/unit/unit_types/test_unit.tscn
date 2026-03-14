@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dhvqy1hqgbkmf" path="res://src/world/unit/states/idle.gd" id="5_dcwxc"]
 [ext_resource type="Script" uid="uid://bbg6wkwto21t7" path="res://src/world/unit/states/move.gd" id="6_8vbxo"]
 
-[node name="Unit" type="Node3D" unique_id=1062339569 node_paths=PackedStringArray("fsm", "sprite", "selection_indicator") groups=["unit"]]
+[node name="TestUnit" type="Node3D" unique_id=1062339569 node_paths=PackedStringArray("fsm", "sprite", "selection_indicator") groups=["unit"]]
 script = ExtResource("1_rpcri")
 fsm = NodePath("FiniteStateMachine")
 sprite = NodePath("Sprite3D")
@@ -32,9 +32,6 @@ billboard = 1
 render_priority = -1
 texture = ExtResource("1_a3wt2")
 
-[node name="WaitTimer" type="Timer" parent="." unique_id=1590400406]
-one_shot = true
-
 [node name="FiniteStateMachine" type="Node" parent="." unique_id=659700740]
 unique_name_in_owner = true
 script = ExtResource("3_dcwxc")
@@ -53,9 +50,3 @@ metadata/_custom_type_script = "uid://wouluixjsc1g"
 [node name="Move" type="Node" parent="FiniteStateMachine" unique_id=953193009 node_paths=PackedStringArray("idle")]
 script = ExtResource("6_8vbxo")
 idle = NodePath("../Idle")
-
-[node name="GroundDetector" type="RayCast3D" parent="." unique_id=295600944]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
-target_position = Vector3(0, -200, 0)
-hit_from_inside = true

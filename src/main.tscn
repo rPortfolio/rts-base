@@ -35,10 +35,12 @@ unique_name_in_owner = true
 layout_mode = 1
 
 [node name="FPSCounter" parent="GUI" unique_id=1921442735 instance=ExtResource("1_eewff")]
+visible = false
 layout_mode = 0
 theme_override_font_sizes/font_size = 30
 
 [node name="SelectionRect" parent="GUI" unique_id=1256554187 instance=ExtResource("4_kmhfv")]
+visible = false
 layout_mode = 0
 
 [node name="World" parent="." unique_id=744991072 instance=ExtResource("4_fyndt")]

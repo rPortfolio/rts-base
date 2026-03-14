@@ -21,7 +21,6 @@ func exit() -> void:
 
 
 func update(_delta: float) -> void:
-	print(unit.data[BUILD_FRAMES_KEY])
 	unit.data[BUILD_FRAMES_KEY] = unit.data[BUILD_FRAMES_KEY] + 1
 	unit.sprite.modulate = Color(0.5, 0.5, 1, float(unit.data[BUILD_FRAMES_KEY]) / build_time_frames)
 	if unit.data[BUILD_FRAMES_KEY] == build_time_frames:

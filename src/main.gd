@@ -29,6 +29,7 @@ func set_state(new_state) -> void:
 		States.PLAYING:
 			saved_game.units = %World.get_units()
 			saved_game.camera_pos = %World.world_camera.position
+			saved_game.camera_rotation_y = snapped(%World.world_camera.camera.rotation.y, PI/2)
 			%MainMenu.save_game(open_slot, saved_game)
 			%World.kill_units()
 	match new_state:
@@ -38,6 +39,7 @@ func set_state(new_state) -> void:
 			%World.selected_units = [] as Array[Unit]
 			%World.load_units(saved_game.units)
 			%World.world_camera.position = saved_game.camera_pos
+			%World.world_camera.camera.rotation.y = saved_game.camera_rotation_y
 			%MainMenu.hide()
 	state = new_state
 
